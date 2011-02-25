@@ -83,7 +83,14 @@ module Castronaut
       end
 
       def redirect uri, code = 303
-        @your_mission = lambda { controller.redirect uri, code }
+        @your_mission = lambda {
+          if @format == :json
+            controller.content_type :json
+            controller.erb( {redirect: uri}.to_json, layout: false )
+          else
+            controller.redirect uri, code
+          end
+        }
       end
 
       def setup_http_request(url, auth_status, payload)
