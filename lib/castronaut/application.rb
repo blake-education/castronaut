@@ -37,8 +37,18 @@ module Castronaut
 
   private
 
-    def self.path_regex path
-      /^\/#{path}(\.json)?$/
+    class << self
+      def prefix
+        if Castronaut.config.respond_to?(:prefix)
+          return "#{Castronaut.config.prefix}/"
+        end
+
+        ''
+      end
+
+      def path_regex path
+        /^\/#{prefix}#{path}(\.json)?$/
+      end
     end
 
   public
