@@ -86,7 +86,6 @@ module Castronaut
       create_directory('db')
 
       ActiveRecord::Base.logger = logger
-      #ActiveRecord::Base.colorize_logging = false
 
       connect_cas_to_activerecord
       connect_adapter_to_activerecord if cas_adapter.has_key?('database')
