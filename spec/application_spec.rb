@@ -1,4 +1,4 @@
-require File.expand_path( '../../../spec_controller_helper', __FILE__ )
+require File.expand_path( '../spec_controller_helper', __FILE__ )
 
 describe 'Castronaut Application Controller' do
 
