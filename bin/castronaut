@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require File.expand_path( File.join File.dirname(__FILE__), '..', 'lib', 'castronaut' )
+require File.expand_path( '../../lib/castronaut', __FILE__ )
 
 require 'rubygems'
 require 'bundler/setup'

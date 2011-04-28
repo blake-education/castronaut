@@ -12,7 +12,7 @@ module Castronaut
   end
 
   def self.file_path( *path )
-    File.expand_path( File.join File.dirname(__FILE__), '..', path )
+    File.expand_path File.join( '../..', path ), __FILE__
   end
 
   def self.config

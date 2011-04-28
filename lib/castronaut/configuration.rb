@@ -101,7 +101,7 @@ module Castronaut
           model.establish_connection("castronaut")
       end
 
-      migration_path = File.expand_path(File.join(File.dirname(__FILE__), 'db'))
+      migration_path = File.expand_path( '../db', __FILE__ )
 
       logger.debug "#{self.class} - Migrating to the latest version using migrations in #{migration_path}"
       CastronautMigrator.migrate(migration_path, ENV["VERSION"] ? ENV["VERSION"].to_i : nil)

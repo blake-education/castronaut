@@ -1,4 +1,4 @@
-require File.expand_path(File.join(File.dirname(__FILE__), '..', '..', 'spec_controller_helper'))
+require File.expand_path( '../../../spec_controller_helper', __FILE__ )
 
 describe 'Castronaut Application Controller' do
 
