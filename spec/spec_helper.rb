@@ -5,7 +5,7 @@ require 'ruby-debug'
 require File.join(File.dirname(__FILE__), '..', 'lib', 'castronaut')
 require File.join(File.dirname(__FILE__), 'spec_rails_mocks')
 
-Castronaut.config = Castronaut::Configuration.load(File.join(File.dirname(__FILE__), '..', 'config', 'castronaut.example.yml'))
+Castronaut.config = Castronaut::Configuration.load(File.join File.dirname(__FILE__), '..', 'config', 'castronaut.example.yml')
 
 class CreateUsers < ActiveRecord::Migration
   Castronaut::Adapters::RestfulAuthentication::User.connection.create_table "users", :force => true do |t|

@@ -19,8 +19,9 @@ module Castronaut
 
 end
 
-Dir[ File.expand_path( '../adapters/**/*.rb', __FILE__ ) ].each{|f| require f}
+Dir[ File.expand_path( '../adapters/**/*.rb', __FILE__ ) ].each{ |f| require f }
 
 Castronaut::Adapters.register("development", Castronaut::Adapters::Development::Adapter)
 Castronaut::Adapters.register("ldap", Castronaut::Adapters::Ldap::Adapter)
 Castronaut::Adapters.register("database", Castronaut::Adapters::RestfulAuthentication::Adapter)
+Castronaut::Adapters.register("devise", Castronaut::Adapters::Devise::Adapter)

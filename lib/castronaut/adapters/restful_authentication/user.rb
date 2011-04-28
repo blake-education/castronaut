@@ -36,7 +36,7 @@ module Castronaut
 
         def self.authenticate(username, password)
           if user = find_by_login(username)
-            if user.encrypted_password == Castronaut::Adapters::RestfulAuthentication::User.digest(password, user.password_salt)
+            if user.crypted_password == Castronaut::Adapters::RestfulAuthentication::User.digest(password, user.salt)
               Castronaut::AuthenticationResult.new(username, nil)
             else
               Castronaut.config.logger.info "#{self} - Unable to authenticate username #{username} due to invalid authentication information"
