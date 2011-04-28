@@ -180,4 +180,18 @@ describe 'Castronaut Application Controller' do
 
   end
 
+  describe 'path prefix' do
+
+    before do
+      Castronaut.config.stub!(:prefix) { 'foo' }
+      Castronaut.load_file 'lib/castronaut/application.rb'
+    end
+
+    it "should set a prefix on routes" do
+      Castronaut::Application.routes['GET'].last[0].to_s.should include('^\/foo\/')
+      Castronaut::Application.routes['POST'].last[0].to_s.should include('^\/foo\/')
+    end
+
+  end
+
 end
