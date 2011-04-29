@@ -10,12 +10,6 @@ class Hodel3000CompliantLogger < Logger
 
 end
 
-class CastronautMigrator < ActiveRecord::Migrator
-  def connection
-    ActiveRecord::Base.connection
-  end
-end
-
 module Castronaut
 
   class Configuration
@@ -97,11 +91,20 @@ module Castronaut
       logger.info "#{self.class} - Connecting to cas database using #{cas_database.inspect}"
 
       ActiveRecord::Base.configurations['castronaut'] = cas_database
-      ActiveRecord::Base.establish_connection('castronaut')
+      Castronaut::Models.each { |m| m.establish_connection('castronaut') }
 
       logger.debug "#{self.class} - Migrating to the latest version using migrations in #{migration_path}"
 
-      CastronautMigrator.migrate migration_path, ENV["VERSION"] ? ENV["VERSION"].to_i : nil
+      begin
+        previous_config = ActiveRecord::Base.connection.instance_variable_get(:@config)
+      rescue
+        # do nothing...
+      ensure
+        ActiveRecord::Base.establish_connection('castronaut')
+        ActiveRecord::Migration.verbose = true
+        ActiveRecord::Migrator.migrate migration_path, ENV["VERSION"] ? ENV["VERSION"].to_i : nil
+        ActiveRecord::Base.establish_connection(previous_config) if previous_config
+      end
     end
 
     def connect_adapter_to_activerecord

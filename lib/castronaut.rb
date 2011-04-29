@@ -38,6 +38,7 @@ module Castronaut
     models/proxy_ticket
     models/ticket_granting_ticket
     models/proxy_granting_ticket
+    models
     authentication_result
     ticket_result
     presenters/base
