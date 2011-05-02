@@ -35,26 +35,43 @@ module Castronaut
 
     end
 
+    helpers do
+
+      def url_for(path)
+        Castronaut::Application.prefix + Castronaut::Application.path(path)
+      end
+
+    end
+
   private
 
     class << self
+
+      def path p
+        p[0] == '/' ? p : "/#{p}"
+      end
+
       def prefix
         if Castronaut.config.respond_to?(:prefix)
-          return "#{Castronaut.config.prefix}/"
+          return path( Castronaut.config.prefix )
         end
 
         ''
       end
 
       def path_regex path
-        /^\/#{prefix}#{path}(\.json)?$/
+        prefix = self.prefix
+        prefix = "\\#{prefix}" if prefix.present?
+
+        /^#{prefix}#{self.path path}(\.json)?$/
       end
+
     end
 
   public
 
     get '/' do
-      redirect '/login'
+      redirect(url_for '/login')
     end
 
     get(path_regex 'login') do |extension|
