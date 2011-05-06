@@ -17,7 +17,11 @@ module Castronaut
         
         messages << "You have successfully logged out."
         
-        render :logout
+        if (Castronaut.config.redirect_on_logout rescue false) && url.present?
+          redirect url
+        else
+          render :logout
+        end
                 
         self
       end

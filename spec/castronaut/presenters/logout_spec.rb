@@ -80,6 +80,41 @@ describe Castronaut::Presenters::Logout do
       @controller.response.should_receive(:delete_cookie).with('tgt')
       Castronaut::Presenters::Logout.new(@controller).represent!
     end
+
+    context 'when redirect on logout is set' do
+
+      before do
+        Castronaut::Models::TicketGrantingTicket.stub!(:find_by_ticket)
+        Castronaut.config.stub(:redirect_on_logout) { true }
+      end
+
+      context 'with a url param' do
+        before do
+          @controller.stub!(:params) { {'url' => 'http://foobar.com'} }
+          @presenter = Castronaut::Presenters::Logout.new(@controller)
+        end
+
+        it 'should redirect automatically the user' do
+          @presenter.should_receive(:redirect).with('http://foobar.com')
+          @presenter.should_not_receive(:render)
+          @presenter.represent!
+        end
+      end
+
+      context 'without url' do
+        before do
+          @controller.stub!(:params) { {} }
+          @presenter = Castronaut::Presenters::Logout.new(@controller)
+        end
+
+        it 'should render standard remplate' do
+          @presenter.should_not_receive(:redirect)
+          @presenter.should_receive(:render).with(:logout)
+          @presenter.represent!
+        end
+      end
+
+    end #context 'when redirect on logout is set' do
     
   end
 end

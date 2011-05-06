@@ -12,6 +12,8 @@ ssl_enabled: false
 
 prefix: cas # this will add the /cas prefix to server routes
 
+redirect_on_logout: true
+
 cas_database:
   adapter: sqlite3
   database: db/cas.db
