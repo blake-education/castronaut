@@ -18,7 +18,7 @@ module Castronaut
         @format = format
         @your_mission = nil
 
-        Castronaut.logger.info "Presenting #{self.class.to_s} with params: #{params}"
+        Castronaut.logger.info "Presenting #{self.class.to_s} with params: #{params.clone.delete_if{|k,v| k == "password"}}"
       end
 
       def url
