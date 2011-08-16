@@ -29,7 +29,10 @@ module Castronaut
       config.config_file_path = path
       config.config_hash = parse_yaml_config(path)
       config.parse_config_into_settings(config.config_hash)
-      config.logger = config.setup_logger
+
+      yield config if block_given?
+
+      config.logger ||= config.setup_logger
       config.debug_initialize if config.logger.debug?
       config.connect_activerecord 
       config
