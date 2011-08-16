@@ -36,6 +36,11 @@ class CreateCasDatabase < ActiveRecord::Migration
       t.column :iou,                :string,    :null => false
       t.column :created_at,         :datetime,  :null => false
     end
+
+    add_index :login_tickets, :ticket, :unique => true
+    add_index :service_tickets, :ticket, :unique => true
+    add_index :ticket_granting_tickets, :ticket, :unique => true
+    add_index :proxy_granting_tickets, :ticket, :unique => true
   end
 
   def self.down
