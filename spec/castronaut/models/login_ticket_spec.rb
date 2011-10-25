@@ -19,7 +19,7 @@ describe Castronaut::Models::LoginTicket do
     login_ticket = LoginTicket.new
     
     login_ticket.should_not be_valid
-    login_ticket.errors.on(:client_hostname).should_not be_nil
+    login_ticket.errors[:client_hostname].should_not be_nil
   end
 
   it "requires a ticket" do
@@ -27,7 +27,7 @@ describe Castronaut::Models::LoginTicket do
     login_ticket.stub!(:dispense_ticket)
 
     login_ticket.should_not be_valid
-    login_ticket.errors.on(:ticket).should_not be_nil
+    login_ticket.errors[:ticket].should_not be_nil
   end
 
   describe "generating from a client hostname" do
