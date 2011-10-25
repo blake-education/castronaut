@@ -1,5 +1,6 @@
 require File.expand_path( '../../spec_helper', __FILE__ )
 require 'yaml'
+require 'fileutils'
 
 describe Castronaut::Configuration do
 
@@ -10,6 +11,9 @@ describe Castronaut::Configuration do
   describe "initialization" do
 
     it "defaults the config file path to ./castronaut.yml if none is given" do
+      default_file = File.expand_path('../../../config/castronaut.yml', __FILE__)
+      FileUtils.cp @test_config_file, default_file
+
       Castronaut::Configuration.stub!(:parse_yaml_config).and_return({})
 
       config = Castronaut::Configuration.new
@@ -18,7 +22,9 @@ describe Castronaut::Configuration do
       config.stub!(:setup_logger).and_return(stub({}).as_null_object)
       Castronaut::Configuration.stub!(:new).and_return(config)
 
-      Castronaut::Configuration.load.config_file_path.should == File.expand_path('../../../config/castronaut.yml', __FILE__)
+      Castronaut::Configuration.load.config_file_path.should == default_file
+
+      FileUtils.rm default_file
     end
 
     it "uses whatever file path is passed to it as the alternate path" do
