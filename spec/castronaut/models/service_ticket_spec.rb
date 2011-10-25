@@ -68,19 +68,19 @@ describe Castronaut::Models::ServiceTicket do
 
     end
 
-  end
+  end # service uri
 
   describe "generate ticket for" do
 
     it "delegates to create!" do
-      ticket = TicketGrantingTicket.new :username => 'foo'
+      ticket = TicketGrantingTicket.new :username => 'foo', :extra_attributes => { :hi => "there!" }
 
-      ServiceTicket.should_receive(:create!).with(:service => 'service', :client_hostname => 'client_host', :username => 'foo', :ticket_granting_ticket => ticket)
+      ServiceTicket.should_receive(:create!).with(:service => 'service', :client_hostname => 'client_host', :username => 'foo', :extra_attributes => { :hi => "there!" }, :ticket_granting_ticket => ticket)
 
       ServiceTicket.generate_ticket_for('service', 'client_host', ticket)
     end
 
-  end
+  end # generate ticket for
 
   describe "matching service?" do
 
@@ -236,10 +236,8 @@ describe Castronaut::Models::ServiceTicket do
 
           end
 
-          
         end
       
-
         describe "when ticket validation was successful and no branches were encountered" do
           
           before do
@@ -258,12 +256,12 @@ describe Castronaut::Models::ServiceTicket do
             Castronaut::Models::ServiceTicket.validate_ticket('service', 'ticket').should be_valid
           end
 
-        end
+        end # when ticket validation was successful and no branches were encountered
 
-      end
+      end # when it finds a service ticket
 
-    end
+    end # when the service and ticket are given
 
-  end
+  end # validating ticket
 
 end

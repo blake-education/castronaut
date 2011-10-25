@@ -3,7 +3,6 @@ log
 coverage
 TAGS
 tags
-db
 ssl
 config/castronaut.yml
 tmtags
@@ -11,3 +10,4 @@ tmtags
 .bundle
 .rvmrc
 Gemfile.lock
+/db

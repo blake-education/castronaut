@@ -10,6 +10,8 @@ module Castronaut
       before_validation :dispense_ticket, :if => :new_record?
       validates_presence_of :ticket, :username
 
+      serialize :extra_attributes
+
       def self.validate_cookie(ticket_cookie)
         Castronaut.logger.debug("#{self} - Validating ticket for #{ticket_cookie}")
 

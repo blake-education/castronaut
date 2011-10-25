@@ -16,9 +16,12 @@ module Castronaut
       before_validation :dispense_ticket, :if => :new_record?
       validates_presence_of :ticket, :client_hostname, :service, :username, :ticket_granting_ticket
 
+      serialize :extra_attributes
+
       def self.generate_ticket_for(service, client_host, ticket_granting_ticket)
         create! :service => service,
                 :username => ticket_granting_ticket.username,
+                :extra_attributes => ticket_granting_ticket.extra_attributes,
                 :client_hostname => client_host,
                 :ticket_granting_ticket => ticket_granting_ticket
       end
