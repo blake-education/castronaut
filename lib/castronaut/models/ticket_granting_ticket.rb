@@ -29,8 +29,8 @@ module Castronaut
         Castronaut::TicketResult.new(ticket_granting_ticket)
       end
 
-      def self.generate_for(username, client_host)
-        create! :username => username, :client_hostname => client_host
+      def self.generate_for(username, client_host, extra_attributes)
+        create! :username => username, :client_hostname => client_host, :extra_attributes => extra_attributes
       end
       
       def ticket_prefix

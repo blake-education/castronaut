@@ -65,8 +65,8 @@ describe Castronaut::Models::TicketGrantingTicket do
   describe "generating for a username and client host" do
 
     it "delegates to :create!" do
-      TicketGrantingTicket.should_receive(:create!).with(:username => 'username', :client_hostname => 'client_host')
-      TicketGrantingTicket.generate_for('username', 'client_host')
+      TicketGrantingTicket.should_receive(:create!).with(:username => 'username', :client_hostname => 'client_host', :extra_attributes => {:foo => "bar", :fu => "baz"})
+      TicketGrantingTicket.generate_for('username', 'client_host', {:foo => "bar", :fu => "baz"})
     end
 
   end

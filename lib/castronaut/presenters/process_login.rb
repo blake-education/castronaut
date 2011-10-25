@@ -37,7 +37,8 @@ module Castronaut
         if authentication_result.valid?
           fire_authentication_success_notice('username' => username, 'client_host' => client_host, 'service' => service)
 
-          ticket_granting_ticket = Castronaut::Models::TicketGrantingTicket.generate_for(username, client_host)
+          extra_attributes = authentication_result.extra_attributes
+          ticket_granting_ticket = Castronaut::Models::TicketGrantingTicket.generate_for(username, client_host, extra_attributes)
           controller.response.set_cookie "tgt", ticket_granting_ticket.to_cookie
 
           if service.blank?

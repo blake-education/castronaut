@@ -260,9 +260,12 @@ describe Castronaut::Presenters::ProcessLogin do
 
           before(:each) do
             @controller.stub!(:params).and_return({ 'username' => 'username', 'password' => 'password', 'service' => 'service'})
+
+            result = stub('auth result', :valid? => true, :extra_attributes => {:foo => "bar"})
             adapter = stub(:authenticate => 'result').as_null_object
+            adapter.stub!(:authenticate).with('username', 'password').and_return(result)
+
             Castronaut::Adapters.stub!(:selected_adapter).and_return(adapter)
-            adapter.stub!(:authenticate).with('username', 'password').and_return(stub('auth result', :valid? => true))
             Castronaut::Models::TicketGrantingTicket.stub!(:generate_for).and_return(stub('ticket granting ticket', :to_cookie => 'cookie'))
           end
 
