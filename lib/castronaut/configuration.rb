@@ -4,8 +4,8 @@ require 'fileutils'
 
 class Hodel3000CompliantLogger < Logger
 
-  def format_message(severity, timestamp, msg, progname)
-    "#{timestamp.strftime("%b %d %H:%M:%S")} [#{$PID}]: #{severity} - #{progname.gsub(/\n/, '').lstrip}\n"
+  def format_message(severity, timestamp, progname, msg)
+    "#{timestamp.strftime("%b %d %H:%M:%S")} [#{$PID}]: #{severity} - #{msg.to_s.gsub(/\n/, '').lstrip}\n"
   end
 
 end
