@@ -18,7 +18,7 @@ module Castronaut
     attr_accessor :config_file_path, :config_hash, :logger
 
     def self.load(path = Castronaut::Configuration::DefaultConfigFilePath)
-      if File.exist?(path)
+      if !File.exist?(path)
         STDERR.puts "Unable to locate configuration at #{path}"
         exit 0
       end
