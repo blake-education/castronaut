@@ -19,8 +19,6 @@ module Castronaut
 
     def self.load(path = Castronaut::Configuration::DefaultConfigFilePath)
       if File.exist?(path)
-        STDOUT.puts "Loading configuration at #{path}..."
-      else
         STDERR.puts "Unable to locate configuration at #{path}"
         exit 0
       end
