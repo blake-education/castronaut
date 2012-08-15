@@ -7,16 +7,8 @@
 require 'rubygems'
 require 'rake'
 require 'rspec/core/rake_task'
-require 'rcov/rcovtask'
 require "fileutils"
 
-desc "Run all examples with Rcov"
-RSpec::Core::RakeTask.new('specs_with_rcov') do |t|
-  ENV["test"] = "true"
-  t.pattern = 'spec/**/*.rb'
-  t.rcov = true
-  t.rcov_opts = ['--text-report', '--exclude', "~/.gem,spec,Library,lib/castronaut/db,#{ENV['GEM_HOME']}", '--sort', 'coverage']
-end
 
 desc "Run all examples"
 RSpec::Core::RakeTask.new('spec') do |t|
