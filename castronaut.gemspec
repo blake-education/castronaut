@@ -37,6 +37,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rack-test'
   s.add_development_dependency 'racksh'
   s.add_development_dependency 'test-unit', '1.2.3'
-  s.add_development_dependency 'rcov'
+  s.add_development_dependency 'simplecov'
 
 end
