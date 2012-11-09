@@ -27,7 +27,7 @@ module Castronaut
       set :root,         root
       set :app_file,     app_file
       set :views,        views
-      set :public,       pub_dir
+      set :public_folder,pub_dir
       set :logging,      true
       set :raise_errors, true
       set :run,          false
