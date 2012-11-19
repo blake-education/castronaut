@@ -1,4 +1,4 @@
-# Castronaut (https://secure.travis-ci.org/blake-education/castronaut.png)][Continuous Integration]
+# Castronaut [![Build Status](https://secure.travis-ci.org/blake-education/castronaut.png)][Continuous Integration]
 
 ## Description
 
