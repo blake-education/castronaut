@@ -1,6 +1,5 @@
-# Castronaut [![Build Status](https://secure.travis-ci.org/blake-education/castronaut.png)][Continuous Integration]
-
-## Description
+Castronaut [![Build Status](https://secure.travis-ci.org/blake-education/castronaut.png)](http://travis-ci.org/blake-education/castronaut)
+=========
 
 Castronaut is an server implementation for the CAS (version 2.0) protocol.  It
 is currently a work in progress but should function properly with the latest
