@@ -7,7 +7,7 @@
 require 'rubygems'
 require 'rake'
 require 'rspec/core/rake_task'
-require 'rcov/rcovtask'
+require 'simplecov'
 require "fileutils"
 
 desc "Run all examples with Rcov"
