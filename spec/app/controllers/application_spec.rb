@@ -55,7 +55,7 @@ describe 'Castronaut Application Controller' do
     it { should be_ok }
 
     it "sets json content-type" do
-      last_response.headers['Content-Type'].should == 'application/json'
+      last_response.headers['Content-Type'].should == 'application/json;charset=utf-8'
     end
 
     it "should have messages as an array" do
@@ -87,7 +87,7 @@ describe 'Castronaut Application Controller' do
     it { should be_ok }
 
     it "sets json content-type" do
-      last_response.headers['Content-Type'].should == 'application/json'
+      last_response.headers['Content-Type'].should == 'application/json;charset=utf-8'
     end
 
   end
@@ -115,7 +115,7 @@ describe 'Castronaut Application Controller' do
     it { should be_ok }
 
     it "sets json content-type" do
-      last_response.headers['Content-Type'] == 'application/json'
+      last_response.headers['Content-Type'] == 'application/json;charset=utf-8'
     end
 
     it "should have messages as an array" do
@@ -147,7 +147,7 @@ describe 'Castronaut Application Controller' do
     it { should be_ok }
 
     it "sets json content-type" do
-      last_response.headers['Content-Type'] == 'application/json'
+      last_response.headers['Content-Type'] == 'application/json;charset=utf-8'
     end
 
   end
@@ -175,7 +175,7 @@ describe 'Castronaut Application Controller' do
     it { should be_ok }
 
     it "sets json content-type" do
-      last_response.headers['Content-Type'] == 'application/json'
+      last_response.headers['Content-Type'] == 'application/json;charset=utf-8'
     end
 
   end

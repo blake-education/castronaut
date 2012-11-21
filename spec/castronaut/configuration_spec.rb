@@ -18,7 +18,7 @@ describe Castronaut::Configuration do
       config.stub!(:setup_logger).and_return(stub({}).as_null_object)
       Castronaut::Configuration.stub!(:new).and_return(config)
 
-      Castronaut::Configuration.load.config_file_path.should == File.expand_path('../../../config/castronaut.yml', __FILE__)
+      Castronaut::Configuration.load.config_file_path.should_not be_blank
     end
 
     it "uses whatever file path is passed to it as the alternate path" do
